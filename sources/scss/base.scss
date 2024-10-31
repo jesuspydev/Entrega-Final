@@ -1,0 +1,204 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$primario : #005ff1;
+$secundario : #1f4375;
+$dark : #02090b;
+$light : #ffffff;
+$bg-body : #e6e6e6;
+$shadow : #d1d1d13b;
+$cancelado : #e81400;
+$realizado : #01ab68;
+$cuidado : #f3a001;
+
+body {
+    background-color: $bg-body;
+    margin-top: 5rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.bg-light {
+    background-color: $light;
+}
+
+.primario {
+    color: $primario;
+}
+
+@mixin out-line($color, $grosor) {
+    border: $color $grosor solid;
+}
+
+.btn-outline-success {
+    @extend .primario;
+    @include out-line($primario, 1px);
+    transition: all ease .3s;
+
+    &:hover {
+        background-color: $primario;
+        color: $light;
+    }
+}
+
+@mixin sombra($color, $lado1: 5px, $lado2: 0px, $difuminado: 0px) {
+    box-shadow: $color $lado1 $lado2 $difuminado;
+}
+
+@mixin dimensiones($alto, $ancho: $alto, $maxHeight: $alto, $maxWidth: $ancho) {
+    max-height: $maxHeight;
+    min-width: $ancho;
+    height: $alto;
+    max-width: $maxWidth;
+}
+
+@mixin colorearLink($color: $dark) {
+    text-decoration: none;
+    color: $color;
+    font-weight: 400;
+}
+
+.centrado-absoluto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dashboard {
+    @include dimensiones(14, 100%, max-content);
+    @include sombra($shadow, 1px, 1px, 2px);
+    @extend .centrado-absoluto;
+    background-color: $light;
+    margin-bottom: 4rem;
+    padding: 2rem;
+
+    .tarjeta {
+        @include dimensiones(8rem, 18rem, 8rem);
+        padding: .5rem;
+        color: $light;
+        flex-grow: 1;
+        margin: .5rem;
+
+        .data {
+            height: 2rem;
+            font-weight: 600;
+        }
+
+        .description {
+            display: flex;
+            flex-direction: row;
+            height: 3rem;
+            gap: 2rem;
+
+            p {
+                align-self: flex-end;
+                width: 9rem;
+            }
+
+            span {
+                width: 6rem;
+                font-size: 3rem;
+                text-align: end;
+                color: $shadow;
+                transition: all ease .4s;
+            }
+        }
+
+        .action {
+            height: 2rem;
+            border-top: $light .5px solid;
+        }
+
+        &:hover {
+            .description span {
+                color: $light;
+            }
+
+            & .action span {
+                transform: translateX(10rem);
+            }
+        }
+    }
+
+    a {
+        @include colorearLink($light);
+
+        span {
+            transition: all ease .4s;
+        }
+    }
+
+
+    .canceladas {
+        background-color: $cancelado;
+    }
+
+    .realizadas {
+        background-color: $realizado;
+    }
+
+    .pendientes {
+        background-color: $primario;
+    }
+
+    .camino {
+        background-color: $cuidado;
+    }
+
+    canvas {
+        flex-grow: 1;
+        @include dimensiones(15rem, 100%, 20rem, 100%);
+        margin-bottom: 2rem;
+    }
+}
+
+form{
+    padding: .5rem;
+}
+
+.acciones{
+
+    .fa-trash{
+        color: $cancelado;
+        margin-left: 2rem;
+    }
+}
+
+
+@media (max-width:668px){
+    #alertDisplay{
+        opacity: 1;
+        display: block;
+    }
+}
+
+#charger {
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 10px solid #ccc;
+    border-radius: 50%;
+    border-top: 10px solid #333;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

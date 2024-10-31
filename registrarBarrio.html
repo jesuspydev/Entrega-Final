@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esta es la descripcion de mi sitio web">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="celulares, computadoras, celulares a bajo precio y buena calidad">
+    
+    
+    <script src="sources/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+
+    <link rel="icon" type="image/png" sizes="32x32" href="sources/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="sources/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="sources/img/favicon-96x96.png">
+
+    <link rel="stylesheet" href="sources/scss/base.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <!-- El cabecero de mi página, en donde colocaré mi barra de navegación -->
+    <header>
+        <!-- Esta es mi barra de navegación, donde tengo mis accesos a otros apartados -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="dashboard.html">Tu mercado</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="fa-solid fa-sliders"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="dashboard.html"><span
+                                    class="fa-solid fa-home"></span> Inicio</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fa-solid fa-cart-shopping"></span> Produdctos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="agregarProducto.html"><span
+                                            class="fa-solid fa-circle-plus"></span> Agregar</a></li>
+                                <li><a class="dropdown-item" href="listaProductos.html"><span
+                                            class="fa-solid fa-list"></span> Listar</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fa-solid fa-truck"></span> Domiciliarios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="registrarDomiciliarios.html"><span
+                                            class="fa-solid fa-circle-plus"></span> Registrar</a></li>
+                                <li><a class="dropdown-item" href="listaDomiciliarios.html"><span
+                                            class="fa-solid fa-list"></span> Listar</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fa-solid fa-store"></span> Bodegas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="registrarBodega.html"><span
+                                            class="fa-solid fa-circle-plus"></span> Registrar</a></li>
+                                <li><a class="dropdown-item" href="listarBodegas.html"><span
+                                            class="fa-solid fa-list"></span> Listar</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fa-solid fa-hotel "></span> Barrios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="registrarBarrio.html"><span
+                                            class="fa-solid fa-circle-plus"></span> Registrar</a></li>
+                                <li><a class="dropdown-item" href="listarBarrios.html"><span
+                                            class="fa-solid fa-list"></span> Listar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success primario" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Este es el main de mi página, o sería dicho de otra forma el cuerpo, la información principal -->
+    <main>
+
+        <h1>Registrar Bodega</h1>
+
+        <form id="form" enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Eje: Pan de queso" name="name" required>
+                <label>Nombre</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="descripcion" id="price" required>
+                <label>Precio de domicilio</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="descripcion" id="timeMin" required>
+                <label>Tiempo mínimo (minutos)</label>
+            </div> 
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="descripcion" id="timeMax" required>
+                <label>Tiempo máximo (minutos)</label>
+            </div> 
+
+            <button type="submit" id="submitBtn" class="btn btn-outline-primary m-2">Registrar</button>
+            <button type="reset" class="btn btn-outline-danger m-2">Cancelar</button>
+        </form>
+
+        
+
+        
+    </main>
+
+    <!-- En este footer o pie de página colocaré la información de contacto de la empresa -->
+    <footer class="text-center">
+        @TU MERCADO
+    </footer>
+</body>
+<script src="sources/js/all.js"></script>
+<script src="sources/js/charger.js"></script>
+<script src="sources/js/Provider.js"></script>
+<script src="sources/js/addNeighbordhood.js"></script>
+</html>

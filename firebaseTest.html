@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="sources/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="sources/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="sources/img/favicon-96x96.png">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyDtpJnT-eC3qNuIBTCu8QzjKBF69V3NNlw",
+
+            authDomain: "administradortmp.firebaseapp.com",
+
+            projectId: "administradortmp",
+
+            storageBucket: "administradortmp.appspot.com",
+
+            messagingSenderId: "40301046027",
+
+            appId: "1:40301046027:web:bce028fbdace3e06dcda0e",
+
+            measurementId: "G-48DHRBW9NY"
+
+        };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const messaging = getMessaging(app);
+
+
+        navigator.serviceWorker.register("sw.js").then(registration => {
+
+            getToken(messaging, {
+
+                serviceWorkerRegistration: registration,
+                vapidKey: 'BE_RfYN9gDJ4APwuxQh81GKoPXQsxmruvFqGsfiBZxvGx1SSrYAMYt_uixn4LYmu9MEICag5idYV3Hg1KaeCOdY'
+            }).then((currentToken) => {
+                if (currentToken) {
+
+                    alert("hace");
+                    console.log("Token is: " + currentToken);
+                    // Send the token to your server and update the UI if necessary
+                    // ...
+                } else {
+                    // Show permission request UI
+                    console.log('No registration token available. Request permission to generate one.');
+                    // ...
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+            });
+        });
+
+    </script>
+</body>
+
+</html>
