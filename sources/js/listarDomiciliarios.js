@@ -1,5 +1,5 @@
 const table = document.getElementById("dealers");
-const host = "https://tumercado.website/admin/"
+const host = "http://145.223.73.73:5000/admin/"
 
 function getDealers() {
     fetch(host + "getAllDelivery", {
