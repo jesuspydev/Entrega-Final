@@ -1,5 +1,5 @@
 const table = document.getElementById("neighbordhoods");
-const host = "http://145.223.73.73:5000/admin/"
+const host = "http://tumercado.website:5000/admin/"
 
 function getAllNeighborshood(){
     fetch(host + "getAllNeighborshood")
@@ -18,15 +18,15 @@ function getAllNeighborshood(){
             name.innerHTML = neighbordhood.name;
 
             const price = item.insertCell();
-            price.setAttribute("class", "price");
+            price.setAttribute("class", "price c-num");
             price.innerHTML = formatCurrency(neighbordhood.price.toString());
 
             const timeMin = item.insertCell();
-            timeMin.setAttribute("class", "timeMin");
+            timeMin.setAttribute("class", "timeMin c-num");
             timeMin.innerHTML = neighbordhood.timeMin;
 
             const timeMax = item.insertCell();
-            timeMax.setAttribute("class", "timeMax");
+            timeMax.setAttribute("class", "timeMax c-num");
             timeMax.innerHTML = neighbordhood.timeMax;
 
             const actions = item.insertCell();

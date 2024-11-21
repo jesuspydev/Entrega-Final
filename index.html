@@ -8,6 +8,7 @@
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="celulares, computadoras, celulares a bajo precio y buena calidad">
     <script src="sources/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/f1af7d663e.js" crossorigin="anonymous"></script>
 
     <link rel="icon" type="image/png" sizes="32x32" href="sources/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="96x96" href="sources/img/favicon-32x32.png">
@@ -95,7 +96,7 @@
                     console.log(currentToken);
                     console.log("Codigo");
                     
-                    localStorage.setItem('tokenFire', currentToken);
+                    sessionStorage.setItem('tokenFire', currentToken);
                 } else {
                     // Show permission request UI
                     console.log('No registration token available. Request permission to generate one.');

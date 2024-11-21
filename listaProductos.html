@@ -7,11 +7,10 @@
     <meta name="description" content="Esta es la descripcion de mi sitio web">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="celulares, computadoras, celulares a bajo precio y buena calidad">
-    
-    
+
+
     <script src="sources/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <script src="https://kit.fontawesome.com/f1af7d663e.js" crossorigin="anonymous"></script>
 
     <link rel="icon" type="image/png" sizes="32x32" href="sources/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="96x96" href="sources/img/favicon-32x32.png">
@@ -44,7 +43,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="fa-solid fa-cart-shopping"></span> Produdctos
+                                <span class="fa-solid fa-cart-shopping"></span> Productos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="agregarProducto.html"><span
@@ -105,7 +104,7 @@
     <!-- Este es el main de mi página, o sería dicho de otra forma el cuerpo, la información principal -->
     <main>
 
-        <table class="table container-fluid" id="products">
+        <table class="table container-fluid">
             <thead>
                 <tr class="table-primary">
                     <th class="col-4">Nombre</th>
@@ -115,8 +114,8 @@
                     <th class="col-1">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                
+            <tbody id="products">
+
             </tbody>
         </table>
 
@@ -124,37 +123,48 @@
         <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar productos</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post">
+                    <form action="" method="post" id="form">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar productos</h5>
+                            <button type="button" class="btn-close" id="closeEdit" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="Eje: Pan de queso">
+                                <input type="text" name="name" id="editName" required class="form-control"
+                                    placeholder="Eje: Pan de queso">
                                 <label>Nombre</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="descripcion">
+                                <input type="text" name="description" id="editDesc" required class="form-control"
+                                    placeholder="descripcion">
                                 <label>Descripción</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" placeholder="precio">
+                                <input type="text" id="editPrice" required class="form-control" placeholder="precio">
                                 <label>Precio</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="file" class="form-control" placeholder="media" accept="image/*">
+                                <input type="number" name="amount" id="amount" required class="form-control" placeholder="inventario">
+                                <label>Unidades en inventario</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="file" name="image" class="form-control" placeholder="media"
+                                    accept="image/*">
                                 <label>Portada</label>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Actualizar</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -202,6 +212,8 @@
 </body>
 
 <script src="sources/js/all.js"></script>
+<script src="sources/js/charger.js"></script>
+<script src="sources/js/Provider.js"></script>
 <script src="sources/js/listarProductos.js"></script>
 
 </html>

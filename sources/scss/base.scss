@@ -1,11 +1,16 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-$primario : #005ff1;
-$secundario : #1f4375;
+$primario : #031716;
+$secundario : #032f30;
+$tercero : #0a7075;
+$cuarto : #0c969c;
+$quinto : #6ba3be;
+
 $dark : #02090b;
 $light : #ffffff;
+$secondary: #0D1E4C;
 $bg-body : #e6e6e6;
-$shadow : #d1d1d13b;
+$shadow : #274d60;
 $cancelado : #e81400;
 $realizado : #01ab68;
 $cuidado : #f3a001;
@@ -66,6 +71,38 @@ h1 {
     flex-wrap: wrap;
 }
 
+
+table th, table td{
+    border-left: .5px solid $white;
+    border-right: .5px solid $white;
+    border-radius: 3px;
+}
+
+.table-primary th {
+    background-color: rgba($primario, 1);
+    color: $white;
+    text-align: center;
+}
+
+.c-num{
+    text-align: end;
+}
+
+
+.table{
+    &-success td{
+        background-color: rgba($color: $realizado, $alpha: .4);
+    }
+
+    &-warning td{
+        background-color: rgba($cuidado, .3);
+    }
+
+    &-danger td{
+        background-color: rgba($cancelado, .3);
+    }
+}
+
 .dashboard {
     @include dimensiones(14, 100%, max-content);
     @include sombra($shadow, 1px, 1px, 2px);
@@ -101,14 +138,13 @@ h1 {
                 width: 6rem;
                 font-size: 3rem;
                 text-align: end;
-                color: $shadow;
                 transition: all ease .4s;
+                color: rgba($white, .3);
             }
         }
 
         .action {
             height: 2rem;
-            border-top: $light .5px solid;
         }
 
         &:hover {
@@ -132,11 +168,11 @@ h1 {
 
 
     .canceladas {
-        background-color: $cancelado;
+        background-color: $secundario;
     }
 
     .realizadas {
-        background-color: $realizado;
+        background-color: $cuarto;
     }
 
     .pendientes {
@@ -144,7 +180,7 @@ h1 {
     }
 
     .camino {
-        background-color: $cuidado;
+        background-color: $tercero;
     }
 
     canvas {
@@ -154,28 +190,47 @@ h1 {
     }
 }
 
-form{
+form {
     padding: .5rem;
 }
 
-.acciones{
+.acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 1rem;
 
-    .fa-trash{
-        color: $cancelado;
-        margin-left: 2rem;
+    span{
+        padding: 8px;
+        border-radius: 5px;
+        transition: all ease .3s;
+
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+
+    .fa-trash {
+        background-color: rgba($danger, .8);
+        color: $white;
+    }
+
+    .fa-pencil{
+        background-color: rgba($cuidado, .8);
     }
 }
 
 
-@media (max-width:668px){
-    #alertDisplay{
+@media (max-width:668px) {
+    #alertDisplay {
         opacity: 1;
         display: block;
     }
 }
 
 #charger {
-    
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

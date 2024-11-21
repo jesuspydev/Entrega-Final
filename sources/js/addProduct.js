@@ -88,5 +88,10 @@ form.addEventListener("submit", (event) => {
     formdata.append("price", getNumber(price.value));
     formdata.append("stocks", JSON.stringify(values));
 
+    console.log(formdata);
+    console.log("data");
+    
+    
+
     const query = new FormProvider(formdata, "admin/createProduct");
 })

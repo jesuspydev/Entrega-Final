@@ -54,6 +54,21 @@ function validateInputNumber(text) {
     return !/[a-zA-Z]/.test(text) && (!isNaN(text));
 }
 
+function getWithId(id){
+    return document.getElementById(id);
+}
+
+function create(element, classes=null){
+
+    if(classes != null){
+        const newElm = document.createElement(element);
+        newElm.setAttribute("class", classes);
+        return newElm;
+    }
+
+    return document.createElement(element);
+}
+
 function commandSpecial(key) {
     const allowedKeys = [
         'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',

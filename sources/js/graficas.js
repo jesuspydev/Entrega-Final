@@ -36,6 +36,12 @@ function crearGrafica(idCaja, type = 'bar', labels = ['Red', 'Blue', 'Yellow', '
     return chart;
 }
 
+const pendingCard = document.getElementById("pendingCard");
+
+pendingCard.addEventListener("click", () => {
+    location.href = "pendingOrders.html";
+})
+
 function modifiedData(...parameters){
 
     const params = parameters[0];

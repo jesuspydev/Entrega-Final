@@ -7,11 +7,10 @@
     <meta name="description" content="Esta es la descripcion de mi sitio web">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="celulares, computadoras, celulares a bajo precio y buena calidad">
-    
-    
     <script src="sources/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/f1af7d663e.js" crossorigin="anonymous"></script>
-    
+    <script src="https://kit.fontawesome.com/f1af7d663e.js" crossorigin="anonymous"></script>
+
 
     <link rel="icon" type="image/png" sizes="32x32" href="sources/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="96x96" href="sources/img/favicon-32x32.png">
@@ -75,7 +74,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="registrarBodega.html"><span
                                             class="fa-solid fa-circle-plus"></span> Registrar</a></li>
-                                <li><a class="dropdown-item" href="listarBodegas.html"><span
+                                <li><a class="dropdown-item" href="/listarBodegas.html"><span
                                             class="fa-solid fa-list"></span> Listar</a></li>
                             </ul>
                         </li>
@@ -93,109 +92,105 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success primario" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Este es el main de mi página, o sería dicho de otra forma el cuerpo, la información principal -->
-    <main>
+    <main id="main">
 
-        <table class="table container-fluid" id="neighbordhoods">
-            <thead>
-                <tr class="table-primary">
-                    <th class="col-4">Nombre</th>
-                    <th class="col-2">Precio ($)</th>
-                    <th class="col-2">Tiempo mínimo</th>
-                    <th class="col-2">Tiempo máximo</th>
-                    <th class="col-1">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-
-        <!-- Este es mi modal para editar los datos -->
-        <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar barrio</h5>
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Lista de productos</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form id="form" enctype="multipart/form-data">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="Eje: Pan de queso" name="name" required>
-                                <label>Nombre</label>
+                            <div class="row mb-3">
+                                <div class="col-sm-4">
+                                    <p><b>Dirección:</b> <span id="address"></span></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><b>Monto:</b> <span id="valueOrder"></span></p>
+                                </div>
                             </div>
-                
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="descripcion" id="price" required>
-                                <label>Precio de domicilio</label>
+
+                            <div class="row mb-3">
+                                <div class="row mb-3">
+                                    <div class="col-sm-8">
+                                        <p><b>Detalles:</b> <span id="details"></span></p>
+                                    </div>
+                                </div>
                             </div>
-                
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="descripcion" id="timeMin" required>
-                                <label>Tiempo mínimo (minutos)</label>
-                            </div> 
-                
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="descripcion" id="timeMax" required>
-                                <label>Tiempo máximo (minutos)</label>
-                            </div> 
-                
-                            <button type="submit" id="submitBtn" class="btn btn-outline-primary m-2">Registrar</button>
-                            <button type="reset" class="btn btn-outline-danger m-2">Cancelar</button>
+
+                            <div class="container-fluid" id="phases">
+                                <table class="table table-dark table-hover mt-3">
+                                    <thead>
+                                        <tr>
+                                            <td>Producto</td>
+                                            <td>Bodega</td>
+                                            <td>Unidades</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productsOrder">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="form-floating mb-3 col-sm-6">
+                                    <select type="text" class="form-control" placeholder="Eje: Pan de queso"
+                                        name="deliveryId" id="deliveryId" required>
+                                        <option disabled selected>Selecciona un domiciliario</option>
+                                    </select>
+                                    <label>Domiciliario</label>
+                                </div>
+
+                            </div>
+
+                            <button id="deliveryRun" type="submit" class="btn btn-primary semi-circle m-2">Asignar <i
+                                    class="fa-solid fa-person-running"></i>
+                            </button>
+                            <button type="reset" class="btn btn-danger semi-circle" data-bs-dismiss="modal"
+                                aria-label="Close">Cerrar <i class="fa-solid fa-close"></i></button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Actualizar</button>
+                        <p>
+                            Recuerda que el cambiar los parametros afecta a las personas que han realizado las compras,
+                            por eso recomendamos enviar un comunicado manifestando los cambios a los participantes que
+                            hayan adquirido sus credenciales de acceso al evento
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Este es mi modal para eliminar -->
-        <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Estás seguro de querer eliminar este producto?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- DASHBOARD -->
 
-        <!-- Este modal se muestra si el dispositivo es de pantalla pequeña -->
-        <div class="modal " id="alertDisplay" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
-                    </div>
-                    <div class="modal-body">
-                        Su dispositivo no cuenta con las dimensiones necesarias para ver correctamente el contenido, le
-                        recomendamos girar el dispositivo para una correcta visualización de los elementos
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1>Ordenes pendientes</h1>
+
+        <table class="table container-fluid" id="orders">
+            <thead>
+                <tr class="table-primary">
+                    <th class="col-5">Dirección</th>
+                    <th class="col-2">Monto</th>
+                    <th class="col-3">Hora de pago</th>
+                    <th class="col-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tableOrders">
+
+            </tbody>
+        </table>
+
+
     </main>
 
     <!-- En este footer o pie de página colocaré la información de contacto de la empresa -->
@@ -205,6 +200,8 @@
 </body>
 
 <script src="sources/js/all.js"></script>
-<script src="sources/js/listarBarrios.js"></script>
+<script src="sources/js/charger.js"></script>
+<script src="sources/js/Provider.js"></script>
+<script src="sources/js/pendingOrders.js"></script>
 
 </html>

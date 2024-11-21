@@ -1,21 +1,18 @@
 class Provider {
-    host = "http://145.223.73.73:5000";
+    host = "http://tumercado.website:5000";
     charger = null;
     button = null;
     parameters = null;
     func = null;
+
+    headers = {};
 
     config = {
     };
 
     graphic = null;
 
-    constructor(route, body, button, method, func, auth = false, parameters = {}, multiplatform = false) {
-
-        var headers = new Headers();
-
-        console.log(headers);
-        
+    constructor(route, body, button, method, func, auth = false, parameters = {}, multiplatform = false) {        
 
         this.charger = document.getElementById("charger");
         this.charger.style = 'display: block;';
@@ -31,39 +28,28 @@ class Provider {
         this.parameters = parameters;
         this.func = func;
 
-        if (auth && sessionStorage.getItem("token") != null) {
-            console.log("Estaaaaaa");
-            
-            headers.append("Authorization" , "Bearer " + sessionStorage.getItem("token"));
+        if (sessionStorage.getItem("token") != null) {
+            this.headers["Authorization"]  = "Bearer " + sessionStorage.getItem("token");
             
         }
         if (multiplatform) {
-            headers.append("Content-Type", "multipart/form-data");
+
+            this.headers["Content-Type"]  = "multipart/form-data";
         }else{
-            headers.append("Content-Type", "application/json");
+            this.headers["Content-Type"]  = "application/json";
         }
 
-        console.log(headers);
         
-        this.config.headers = headers;
-
-        console.log(this.config);
+        this.config.headers = this.headers;
     }
 
     operate() {
-
-        console.log(this.config);
-        console.log("Configuración");
-        
-        
 
         fetch(this.host + this.route, this.config)
 
             .then(response => response.json())
 
             .then(data => {
-                console.log(data);
-                console.log(this.config.body);
 
                 if ("error" in data) {
                     if("T" == data.error[0]){
@@ -101,21 +87,21 @@ class Provider {
     }
 
     getData() {
-        console.log(this.data);
         return this.data;
     }
 }
 
 class FormProvider {
 
-    constructor(formData, route) {
+    constructor(formData, route, isJson=false, func=null) {
 
 
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
 
-        console.log(sessionStorage.getItem("token"));
-        
+        if(isJson){
+            myHeaders.append("Content-Type", "application/json")
+        }
         
         const requestOptions = {
             method: "POST",
@@ -123,16 +109,19 @@ class FormProvider {
             body: formData
         };
 
-        fetch("http://145.223.73.73:5000/" + route, requestOptions)
+        fetch("http://tumercado.website:5000/" + route, requestOptions)
             .then((response) => response.json())
             .then(data => {
                 var color = "#005ff1";
                 if ("error" in data) {
                     color = "#e81400";
-                    console.log(data);
                     
                 } else {
                     form.reset();
+
+                    if(func != null){
+                        func();
+                    }
                 }
 
                 const toast = new Toast(color, data["message"]);
