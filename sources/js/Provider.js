@@ -41,12 +41,11 @@ class Provider {
 
 
         this.config.headers = this.headers;
-        console.log(this.config.headers);
-
     }
 
     operate() {
 
+        console.log(this.config);
         fetch(this.host + this.route, this.config)
 
             .then(response => response.json())
