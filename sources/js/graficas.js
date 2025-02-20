@@ -42,7 +42,7 @@ pendingCard.addEventListener("click", () => {
     location.href = "pendingOrders.html";
 })
 
-function modifiedData(...parameters){
+function modifiedData(...parameters) {
 
     const params = parameters[0];
     const data = params.data;
@@ -67,11 +67,11 @@ const camino = document.getElementById("camino");
 
 
 
-function cardsData(...parameters){
+function cardsData(...parameters) {
     const data = parameters[0].data;
 
     console.log(data);
-    
+
     pendientes.innerHTML = data.data.earring;
     realizadas.innerHTML = data.data.deliveried;
     canceladas.innerHTML = data.data.canceled;
@@ -81,5 +81,5 @@ function cardsData(...parameters){
 const query = new Provider(urlDashboard, null, null, "GET", cardsData, true);
 query.operate();
 
-const query2 = new Provider("/user/getDataShops", null, null, "GET", modifiedData, true, {idCaja : "canvas1", type : "polarArea", title : "N° de unidades vendidas", border : 1});
+const query2 = new Provider("/user/getDataShops", null, null, "GET", modifiedData, true, { idCaja: "canvas1", type: "polarArea", title: "N° de unidades vendidas", border: 1 });
 query2.operate();
