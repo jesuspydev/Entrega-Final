@@ -5,14 +5,14 @@ class Provider {
     parameters = null;
     func = null;
 
-    headers = {};
-
     config = {
     };
 
     graphic = null;
 
     constructor(route, body, button, method, func, auth = false, parameters = {}, multiplatform = false) {
+
+        const myHeaders = new Headers();
 
         this.charger = document.getElementById("charger");
         this.charger.style = 'display: block;';
@@ -29,18 +29,18 @@ class Provider {
         this.func = func;
 
         if (sessionStorage.getItem("token") != null) {
-            this.headers["Authorization"] = "Bearer " + sessionStorage.getItem("token");
-
+            myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
         }
 
         if (multiplatform) {
-            this.headers["Content-Type"] = "multipart/form-data";
+            myHeaders.append("Content-Type", "multipart/form-data")
         } else {
-            this.headers["Content-Type"] = "application/json";
+            myHeaders.append("Content-Type", "application/json");
+
         }
 
 
-        this.config.headers = this.headers;
+        this.config.headers = myHeaders;
     }
 
     operate() {
