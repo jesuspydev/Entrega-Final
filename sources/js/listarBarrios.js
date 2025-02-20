@@ -1,5 +1,5 @@
 const table = document.getElementById("neighbordhoods");
-const host = "http://tumercado.website/admin/"
+const host = "https://tumercado.website/admin/"
 
 function getAllNeighborshood() {
     fetch(host + "getAllNeighborshood")

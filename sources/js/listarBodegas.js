@@ -1,5 +1,5 @@
 const table = document.getElementById("stores");
-const host = "http://tumercado.website/admin/"
+const host = "https://tumercado.website/admin/"
 
 function getStores() {
     fetch(host + "getStores", {

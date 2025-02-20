@@ -1,5 +1,5 @@
 class Provider {
-    host = "http://tumercado.website";
+    host = "https://tumercado.website";
     charger = null;
     button = null;
     parameters = null;
@@ -109,7 +109,7 @@ class FormProvider {
             body: formData
         };
 
-        fetch("http://tumercado.website/" + route, requestOptions)
+        fetch("https://tumercado.website/" + route, requestOptions)
             .then((response) => response.json())
             .then(data => {
                 var color = "#005ff1";
