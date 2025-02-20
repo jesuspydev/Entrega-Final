@@ -1,5 +1,5 @@
 class Provider {
-    host = "http://tumercado.website:5000";
+    host = "http://tumercado.website";
     charger = null;
     button = null;
     parameters = null;
@@ -12,7 +12,7 @@ class Provider {
 
     graphic = null;
 
-    constructor(route, body, button, method, func, auth = false, parameters = {}, multiplatform = false) {        
+    constructor(route, body, button, method, func, auth = false, parameters = {}, multiplatform = false) {
 
         this.charger = document.getElementById("charger");
         this.charger.style = 'display: block;';
@@ -29,17 +29,17 @@ class Provider {
         this.func = func;
 
         if (sessionStorage.getItem("token") != null) {
-            this.headers["Authorization"]  = "Bearer " + sessionStorage.getItem("token");
-            
+            this.headers["Authorization"] = "Bearer " + sessionStorage.getItem("token");
+
         }
         if (multiplatform) {
 
-            this.headers["Content-Type"]  = "multipart/form-data";
-        }else{
-            this.headers["Content-Type"]  = "application/json";
+            this.headers["Content-Type"] = "multipart/form-data";
+        } else {
+            this.headers["Content-Type"] = "application/json";
         }
 
-        
+
         this.config.headers = this.headers;
     }
 
@@ -52,11 +52,11 @@ class Provider {
             .then(data => {
 
                 if ("error" in data) {
-                    if("T" == data.error[0]){
+                    if ("T" == data.error[0]) {
                         alert(data.message);
                         window.location = "index.html";
                     }
-                    
+
                 } else {
                     this.parameters["data"] = data;
                     if (!(this.func == null)) {
@@ -69,7 +69,7 @@ class Provider {
             .catch(error => {
 
                 console.error(error);
-                
+
                 const colorIcon = "#e81400";
                 const message = "No se pudo conectar al servidor";
                 const toast = new Toast(colorIcon, message);
@@ -82,7 +82,7 @@ class Provider {
                 if (this.button != null) {
                     this.button.disabled = false;
                 }
-                
+
             });
     }
 
@@ -93,33 +93,33 @@ class Provider {
 
 class FormProvider {
 
-    constructor(formData, route, isJson=false, func=null) {
+    constructor(formData, route, isJson = false, func = null) {
 
 
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
 
-        if(isJson){
+        if (isJson) {
             myHeaders.append("Content-Type", "application/json")
         }
-        
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: formData
         };
 
-        fetch("http://tumercado.website:5000/" + route, requestOptions)
+        fetch("http://tumercado.website/" + route, requestOptions)
             .then((response) => response.json())
             .then(data => {
                 var color = "#005ff1";
                 if ("error" in data) {
                     color = "#e81400";
-                    
+
                 } else {
                     form.reset();
 
-                    if(func != null){
+                    if (func != null) {
                         func();
                     }
                 }
@@ -134,6 +134,6 @@ class FormProvider {
                 const toast = new Toast(colorIcon, message);
                 toast.show()
             })
-        
+
     }
 }

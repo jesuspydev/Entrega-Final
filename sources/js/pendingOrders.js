@@ -94,11 +94,15 @@ function renderOrders(data){
             detailsOrder.textContent = order.details;
 
             orderId = order.id;
+            console.log(order);
+            
 
             const queryDealers = new Provider("/admin/getAllDelivery", null, null, "GET", buildBtnDealers, true);
             queryDealers.operate()
 
             order.products.forEach(product => {
+                console.log(product);
+                
                 const item = productsOrder.insertRow();
                 item.setAttribute("class", "table-info");
 

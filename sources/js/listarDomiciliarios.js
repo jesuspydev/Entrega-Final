@@ -1,5 +1,5 @@
 const table = document.getElementById("dealers");
-const host = "http://tumercado.website:5000/admin/"
+const host = "http://tumercado.website/admin/"
 
 function getDealers() {
     fetch(host + "getAllDelivery", {
@@ -22,7 +22,7 @@ function getDealers() {
                 const name = item.insertCell();
                 name.setAttribute("class", "name");
                 name.innerHTML = delivery.firstName + " " + delivery.lastName;
-                
+
                 const vehicleObj = delivery.vehicle[0];
                 const vehicle = item.insertCell();
                 vehicle.setAttribute("class", "vehicle");

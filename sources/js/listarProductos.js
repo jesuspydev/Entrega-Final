@@ -1,5 +1,5 @@
 const table = document.getElementById("products");
-const host = "http://tumercado.website:5000/admin/"
+const host = "http://tumercado.website/admin/"
 
 const closeEdit = document.getElementById("closeEdit");
 const closeDelete = document.getElementById("closeDelete");
@@ -21,18 +21,18 @@ form.addEventListener("submit", (event) => {
 
     formdata.append("price", getNumber(priceEdit.value));
     formdata.append("id", idStock);
-    
+
     const update = new FormProvider(formdata, "admin/editProduct", false, getProducts)
 
     closeEdit.click();
-    
+
 })
 
 
 
 priceEdit.addEventListener("keydown", (event) => {
     if (event.key == "Tab") {
-        
+
         priceEdit.value = formatCurrency(priceEdit.value);
     }
     else {
@@ -40,69 +40,69 @@ priceEdit.addEventListener("keydown", (event) => {
     }
 })
 
-function getProducts(){
+function getProducts() {
     fetch(host + "getProductsDetails")
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        table.innerHTML = "";
-        const products = data.products;
+            table.innerHTML = "";
+            const products = data.products;
 
-        products.forEach(product => {
-            
-            const stocks = product.stocks;
+            products.forEach(product => {
 
-            stocks.forEach(stock => {
-                const item = table.insertRow();
-                item.setAttribute("class", (stock.stock > 0)? ( (stock.stock <= 50)? "table-warning" : "table-success" ): "table-danger");
-                item.id = stock.id;
+                const stocks = product.stocks;
 
-                const name = item.insertCell();
-                name.setAttribute("class", "name");
-                name.innerHTML = product.name;
+                stocks.forEach(stock => {
+                    const item = table.insertRow();
+                    item.setAttribute("class", (stock.stock > 0) ? ((stock.stock <= 50) ? "table-warning" : "table-success") : "table-danger");
+                    item.id = stock.id;
 
-                const price = item.insertCell();
-                price.setAttribute("class", "price c-num");
-                price.innerHTML = formatCurrency(product.price.toString());
+                    const name = item.insertCell();
+                    name.setAttribute("class", "name");
+                    name.innerHTML = product.name;
 
-                const amount = item.insertCell();
-                amount.setAttribute("class", "stock c-num");
-                amount.innerHTML = stock.stock;
+                    const price = item.insertCell();
+                    price.setAttribute("class", "price c-num");
+                    price.innerHTML = formatCurrency(product.price.toString());
 
-                const store = item.insertCell();
-                store.setAttribute("class", "store");
-                store.innerHTML = stock.store;
+                    const amount = item.insertCell();
+                    amount.setAttribute("class", "stock c-num");
+                    amount.innerHTML = stock.stock;
 
-                const actions = item.insertCell();
-                actions.setAttribute("class", "acciones");
+                    const store = item.insertCell();
+                    store.setAttribute("class", "store");
+                    store.innerHTML = stock.store;
 
-                const btnEdit = document.createElement("span");
-                btnEdit.setAttribute("type", "button");
-                btnEdit.setAttribute("class", "fa-solid fa-pencil");
-                btnEdit.setAttribute("data-bs-target", "#editar")
-                btnEdit.setAttribute("data-bs-toggle", "modal")
+                    const actions = item.insertCell();
+                    actions.setAttribute("class", "acciones");
 
-                btnEdit.addEventListener("click", () => {
-                    priceEdit.value = formatCurrency(product.price.toString());
-                    nameEdit.value = product.name;
-                    descEdit.value = product.description;
-                    amountEdit.value = stock.stock;
-                    idStock = stock.id
-                })
+                    const btnEdit = document.createElement("span");
+                    btnEdit.setAttribute("type", "button");
+                    btnEdit.setAttribute("class", "fa-solid fa-pencil");
+                    btnEdit.setAttribute("data-bs-target", "#editar")
+                    btnEdit.setAttribute("data-bs-toggle", "modal")
 
-                const btnDelete = document.createElement("span");
-                btnDelete.setAttribute("type", "button");
-                btnDelete.setAttribute("class", "fa-solid fa-trash");
-                btnDelete.setAttribute("data-bs-target", "#eliminar");
-                btnDelete.setAttribute("data-bs-toggle", "modal");
+                    btnEdit.addEventListener("click", () => {
+                        priceEdit.value = formatCurrency(product.price.toString());
+                        nameEdit.value = product.name;
+                        descEdit.value = product.description;
+                        amountEdit.value = stock.stock;
+                        idStock = stock.id
+                    })
 
-                
-                actions.appendChild(btnEdit);
-                actions.appendChild(btnDelete);
+                    const btnDelete = document.createElement("span");
+                    btnDelete.setAttribute("type", "button");
+                    btnDelete.setAttribute("class", "fa-solid fa-trash");
+                    btnDelete.setAttribute("data-bs-target", "#eliminar");
+                    btnDelete.setAttribute("data-bs-toggle", "modal");
+
+
+                    actions.appendChild(btnEdit);
+                    actions.appendChild(btnDelete);
+                });
+
             });
-
-        });
-    })
+        })
 }
 
 getProducts()

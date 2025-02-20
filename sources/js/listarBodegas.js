@@ -1,5 +1,5 @@
 const table = document.getElementById("stores");
-const host = "http://tumercado.website:5000/admin/"
+const host = "http://tumercado.website/admin/"
 
 function getStores() {
     fetch(host + "getStores", {
@@ -22,7 +22,7 @@ function getStores() {
                 const name = item.insertCell();
                 name.setAttribute("class", "name");
                 name.innerHTML = store.name;
-                
+
 
                 const address = item.insertCell();
                 address.setAttribute("class", "address");
