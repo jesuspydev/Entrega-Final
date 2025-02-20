@@ -29,10 +29,10 @@ class Provider {
         this.func = func;
 
         if (sessionStorage.getItem("token") != null) {
-            console.log(sessionStorage.getItem("token"))
             this.headers["Authorization"] = "Bearer " + sessionStorage.getItem("token");
 
         }
+
         if (multiplatform) {
             this.headers["Content-Type"] = "multipart/form-data";
         } else {
@@ -41,6 +41,8 @@ class Provider {
 
 
         this.config.headers = this.headers;
+        console.log(this.config.headers);
+
     }
 
     operate() {
