@@ -54,6 +54,8 @@ class Provider {
                 if ("error" in data) {
                     if ("T" == data.error[0]) {
                         alert(data.message);
+                        console.log("Aquí está el error");
+
                         window.location = "index.html";
                     }
 

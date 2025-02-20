@@ -10,28 +10,30 @@ form.addEventListener("submit", (event) => {
     const password = document.getElementById("password").value;
 
     const route = "/admin/login";
-    
+
     const body = {
         email: email,
         password: password,
-        tokenFire : sessionStorage.getItem('tokenFire')
+        tokenFire: sessionStorage.getItem('tokenFire')
     }
 
     console.log(body);
-    
 
-    function login(...parameters){
+
+    function login(...parameters) {
         const data = parameters[0].data;
-        if (data != null && data.hasOwnProperty("token")){
+        if (data != null && data.hasOwnProperty("token")) {
+            console.log(data);
+
             sessionStorage.setItem("token", data.token);
             location.href = "dashboard.html";
         }
-        else{
+        else {
             alert(data.message);
         }
     }
 
     const query = new Provider(route, body, loginBtn, "POST", login, false);
     query.operate();
-    
+
 });
