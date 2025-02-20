@@ -22,6 +22,7 @@ form.addEventListener("submit", (event) => {
 
     function login(...parameters) {
         const data = parameters[0].data;
+        console.log(data);
         if (data != null && data.hasOwnProperty("token")) {
             console.log(data);
 
