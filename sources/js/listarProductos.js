@@ -1,5 +1,5 @@
 const table = document.getElementById("products");
-const host = "https://tumercado.website/admin/"
+const host = "http://82.29.152.181:5000/admin/"
 
 const closeEdit = document.getElementById("closeEdit");
 const closeDelete = document.getElementById("closeDelete");
